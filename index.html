@@ -1,0 +1,639 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dr. Junaid K.C. Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+/* Layout: one long academic page. Sticky section nav, a hero with portrait arch,
+   then alternating plain and tinted bands. Navy, charcoal and a quiet teal on warm white. */
+:root {
+  --bg: #fbf9f4; --tint: #f4f0e6; --surface: #ffffff;
+  --ink: #252a31; --ink2: #4a525d; --muted: #66707d;
+  --head: #16284a; --btn: #16284a; --on-btn: #ffffff;
+  --accent: #1f5f61; --accent-soft: #e3efee; --teal: #2a7a7c; --on-teal: #ffffff;
+  --line: #e7e2d6; --line2: #d5cfc0; --band: #16284a; --band-ink: #dfe7f3; --band-mute: #9fb2cf; --band-accent: #9fd3d2;
+  --warn-bg: #f6ecd7; --warn-ink: #7a5a14; --shadow: 0 1px 2px rgba(22,40,74,.05), 0 10px 26px -14px rgba(22,40,74,.18);
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --sans: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --nav-h: 64px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f1726; --tint: #131d30; --surface: #172236;
+  --ink: #e4e9f1; --ink2: #b9c3d2; --muted: #8f9bad;
+  --head: #f1f4fa; --btn: #e4ecf8; --on-btn: #0f1d38;
+  --accent: #7ac7c6; --accent-soft: #173a3d; --teal: #4fb0b0; --on-teal: #0b1322;
+  --line: #243149; --line2: #31415f; --band: #0a1120; --band-ink: #d3dcea; --band-mute: #8fa3c0; --band-accent: #7ac7c6;
+  --warn-bg: #3b3017; --warn-ink: #ecc872; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 26px -14px rgba(0,0,0,.6);
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0f1726; --tint: #131d30; --surface: #172236;
+  --ink: #e4e9f1; --ink2: #b9c3d2; --muted: #8f9bad;
+  --head: #f1f4fa; --btn: #e4ecf8; --on-btn: #0f1d38;
+  --accent: #7ac7c6; --accent-soft: #173a3d; --teal: #4fb0b0; --on-teal: #0b1322;
+  --line: #243149; --line2: #31415f; --band: #0a1120; --band-ink: #d3dcea; --band-mute: #8fa3c0; --band-accent: #7ac7c6;
+  --warn-bg: #3b3017; --warn-ink: #ecc872; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 26px -14px rgba(0,0,0,.6);
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 12px); }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.65; padding-left: 0; padding-right: 0; -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); background: var(--bg); z-index: 60; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:hover { color: var(--head); }
+:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--head); font-weight: 500; line-height: 1.2; letter-spacing: -.01em; margin: 0 0 .5em; text-wrap: balance; }
+h2 { font-size: clamp(1.7rem, 3vw, 2.15rem); }
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1.1rem; }
+p { margin: 0 0 1em; }
+ul { padding: 0; margin: 0; list-style: none; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.band { padding-block: clamp(56px, 8vw, 92px); }
+.band.tint { background: var(--tint); }
+.eyebrow { font-size: .76rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin: 0 0 10px; }
+.lead { font-size: 1.12rem; color: var(--ink2); max-width: 66ch; }
+.m { color: var(--muted); font-size: .93rem; margin: 0 0 6px; }
+.m.s { font-size: .87rem; }
+.sec-head { margin-bottom: 30px; max-width: 760px; }
+.sub { font-size: 1.3rem; margin: 52px 0 18px; }
+.sub:first-child { margin-top: 0; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+
+/* nav */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 70; background: var(--bg); border-bottom: 1px solid var(--line); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); gap: 16px; }
+.brand { display: flex; align-items: center; gap: 11px; text-decoration: none; color: var(--head); font-family: var(--serif); font-size: 1.2rem; white-space: nowrap; }
+.mark { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 9px; background: var(--btn); color: var(--on-btn); font-size: .98rem; }
+.nav ul.links { display: flex; gap: 2px; }
+.nav ul.links a { display: block; padding: 8px 10px; border-radius: 8px; color: var(--ink2); font-size: .9rem; font-weight: 500; text-decoration: none; }
+.nav ul.links a:hover { background: var(--accent-soft); color: var(--head); }
+.nav ul.links a.cur { color: var(--head); box-shadow: inset 0 -2px 0 var(--teal); border-radius: 0; }
+.burger { display: none; width: 42px; height: 42px; border: 1px solid var(--line2); background: var(--surface); border-radius: 10px; color: var(--head); cursor: pointer; font: inherit; font-size: 1.2rem; }
+@media (max-width: 1060px) {
+  .burger { display: block; }
+  .nav ul.links { display: none; position: absolute; left: 0; right: 0; top: var(--nav-h); flex-direction: column; background: var(--bg); border-bottom: 1px solid var(--line); padding: 6px max(20px, env(safe-area-inset-right, 0px)) 16px max(20px, env(safe-area-inset-left, 0px)); max-height: calc(100vh - var(--nav-h)); overflow-y: auto; }
+  .nav ul.links.open { display: flex; }
+  .nav ul.links a { padding: 13px 4px; border-bottom: 1px solid var(--line); border-radius: 0; font-size: 1rem; }
+  .nav ul.links a.cur { box-shadow: none; color: var(--accent); }
+}
+
+/* buttons, tags */
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 999px; border: 1.5px solid var(--btn); font: inherit; font-weight: 600; font-size: .95rem; text-decoration: none; cursor: pointer; transition: background .2s, color .2s; }
+.btn.fill { background: var(--btn); color: var(--on-btn); }
+.btn.fill:hover { opacity: .9; color: var(--on-btn); }
+.btn.line { background: transparent; color: var(--head); }
+.btn.line:hover { background: var(--btn); color: var(--on-btn); }
+.arrow { font-weight: 600; font-size: .94rem; text-decoration: none; white-space: nowrap; }
+.arrow::after { content: " →"; }
+.plainlink { text-decoration: none; }
+.plainlink:hover { text-decoration: underline; }
+.tag { display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; background: var(--tint); color: var(--ink2); border: 1px solid var(--line); }
+.tag-a, .tag-ongoing { background: var(--accent-soft); color: var(--accent); border-color: transparent; }
+.tag-forthcoming { background: var(--warn-bg); color: var(--warn-ink); border-color: transparent; }
+.badge { display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 4px 11px; border-radius: 999px; }
+.b-organised { background: var(--btn); color: var(--on-btn); }
+.b-coordinated { background: var(--teal); color: var(--on-teal); }
+.b-facilitated { box-shadow: inset 0 0 0 1.5px var(--head); color: var(--head); }
+.b-attended { background: var(--tint); color: var(--ink2); box-shadow: inset 0 0 0 1px var(--line2); }
+.mr { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+
+/* cards and grids */
+.grid { display: grid; gap: 20px; }
+.g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.gi { grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
+@media (max-width: 900px) { .g3, .g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .g2, .g3, .g4 { grid-template-columns: minmax(0, 1fr); } }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 24px; box-shadow: var(--shadow); min-width: 0; }
+.card h4 { margin-bottom: 8px; }
+.card p:last-child { margin-bottom: 0; }
+.plain { min-width: 0; padding: 4px 0; border-top: 2px solid var(--line2); padding-top: 14px; }
+.plain p { color: var(--ink2); font-size: .96rem; margin: 0; }
+.int p { color: var(--ink2); font-size: .98rem; }
+.kw { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.kw li, .chips li { padding: 3px 11px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: .8rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.chips li { background: var(--surface); border: 1px solid var(--line2); color: var(--ink2); font-size: .9rem; padding: 6px 14px; }
+.row { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 28px; padding: 18px 0; border-top: 1px solid var(--line2); }
+.row:last-child { border-bottom: 1px solid var(--line2); }
+.row.one { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+.row p { margin: 0; color: var(--ink2); font-size: .96rem; }
+.row h4 { margin-bottom: 4px; }
+@media (max-width: 720px) { .row { grid-template-columns: minmax(0, 1fr); gap: 6px; } }
+.ph-i, .ph { color: var(--muted); font-style: italic; }
+.ph { font-size: .88rem; margin: 12px 0 0; }
+.ph-box { margin: 0; padding: 14px 18px; border: 1px dashed var(--line2); border-radius: 10px; color: var(--muted); font-size: .94rem; }
+
+/* hero */
+.hero { padding-block: clamp(36px, 7vw, 84px) clamp(48px, 7vw, 84px); position: relative; overflow: hidden; }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(28px, 6vw, 80px); align-items: center; }
+.hero h1 { font-size: clamp(2.3rem, 5vw, 3.4rem); letter-spacing: -.02em; margin-bottom: 10px; }
+.hero .role { font-size: 1.15rem; font-weight: 600; color: var(--head); margin: 0 0 2px; }
+.hero .aff { color: var(--muted); margin: 0 0 20px; }
+.hero .intro { font-size: 1.12rem; color: var(--ink2); max-width: 56ch; margin-bottom: 26px; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 26px; }
+.plinks { display: flex; flex-wrap: wrap; gap: 8px; }
+.plinks a { display: inline-block; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line2); background: var(--surface); color: var(--ink2); font-size: .84rem; font-weight: 500; text-decoration: none; }
+.plinks a:hover { border-color: var(--teal); color: var(--accent); }
+.portrait { position: relative; justify-self: center; width: min(100%, 360px); }
+.arch { aspect-ratio: 4 / 5; border-radius: 999px 999px 22px 22px; background: var(--accent-soft); border: 1px solid var(--line2); display: grid; place-items: center; overflow: hidden; }
+.arch span { font-family: var(--serif); font-size: 6rem; color: var(--head); opacity: .85; }
+.pcard { position: absolute; left: -22px; bottom: 26px; max-width: 260px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 13px 15px; box-shadow: var(--shadow); font-size: .85rem; color: var(--muted); line-height: 1.4; }
+.pcard b { display: block; color: var(--head); font-size: .92rem; }
+.pcard small { display: block; font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 2px; }
+@media (max-width: 860px) {
+  .hero .wrap { grid-template-columns: minmax(0, 1fr); }
+  .portrait { order: -1; justify-self: start; width: min(60%, 240px); }
+  .pcard { display: none; }
+}
+
+/* about */
+.about { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 52px; align-items: start; }
+.about .prose p { max-width: 66ch; }
+.quote { margin: 28px 0 0; padding: 2px 0 2px 20px; border-left: 3px solid var(--teal); font-family: var(--serif); font-style: italic; font-size: 1.25rem; line-height: 1.5; color: var(--head); max-width: 58ch; }
+dl { margin: 0; }
+dt { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-top: 14px; }
+dt:first-child { margin-top: 0; }
+dd { margin: 2px 0 0; overflow-wrap: anywhere; }
+@media (max-width: 900px) { .about { grid-template-columns: minmax(0, 1fr); gap: 30px; } }
+.tl { display: grid; grid-template-columns: 100px minmax(0, 1fr); gap: 22px; padding: 20px 0; border-top: 1px solid var(--line2); }
+.tl-k { font-family: var(--serif); font-size: 1.45rem; color: var(--accent); margin: 0; line-height: 1.1; }
+.tl h4 { margin-bottom: 4px; }
+@media (max-width: 640px) { .tl { grid-template-columns: minmax(0, 1fr); gap: 4px; } }
+
+/* filters */
+.bar { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 14px; }
+.search { position: relative; flex: 1 1 260px; min-width: 0; }
+.search svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); }
+input[type=search], select { width: 100%; font: inherit; font-size: 1rem; color: var(--ink); background: var(--surface); border: 1px solid var(--line2); border-radius: 999px; padding: 11px 16px; }
+input[type=search] { padding-left: 42px; }
+select { cursor: pointer; }
+input:focus, select:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px color-mix(in srgb, var(--teal) 25%, transparent); }
+.yearsel { flex: 0 0 auto; width: 150px; }
+.cs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.chip { font: inherit; font-size: .9rem; font-weight: 500; padding: 7px 15px; border-radius: 999px; border: 1px solid var(--line2); background: var(--surface); color: var(--ink2); cursor: pointer; }
+.chip:hover { border-color: var(--head); color: var(--head); }
+.chip.on { background: var(--btn); border-color: var(--btn); color: var(--on-btn); }
+.chip b { display: inline-block; min-width: 1.5em; margin-left: 4px; padding: 0 6px; border-radius: 999px; background: color-mix(in srgb, var(--ink) 10%, transparent); font-size: .76rem; font-weight: 600; text-align: center; }
+.count { font-size: .9rem; color: var(--muted); margin: 0 0 18px; }
+.empty { padding: 28px; text-align: center; color: var(--muted); background: var(--surface); border: 1px dashed var(--line2); border-radius: 12px; }
+
+/* publications */
+.pubs { border-top: 1px solid var(--line); }
+.pub { padding: 22px 0; border-bottom: 1px solid var(--line); }
+.pub-top { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 8px; }
+.pub-year { margin-left: auto; font-family: var(--serif); font-size: 1.05rem; color: var(--accent); }
+.pub h3 { font-size: 1.14rem; line-height: 1.35; margin-bottom: 6px; }
+.pub-auth, .pub-venue { margin: 0 0 4px; color: var(--ink2); font-size: .96rem; }
+.pub-ids { display: flex; flex-wrap: wrap; gap: 4px 18px; margin: 0 0 8px; font-size: .86rem; color: var(--muted); }
+.pub-acts { display: flex; flex-wrap: wrap; gap: 6px 22px; align-items: baseline; }
+.abs summary, .event summary { cursor: pointer; }
+.abs summary { font-size: .92rem; font-weight: 600; color: var(--head); list-style: none; }
+.abs summary::-webkit-details-marker, .event summary::-webkit-details-marker { display: none; }
+.abs summary::before { content: "+"; display: inline-block; width: 1.2em; color: var(--teal); }
+.abs[open] summary::before { content: "–"; }
+.abs p { margin: 10px 0 0; max-width: 70ch; color: var(--ink2); font-size: .96rem; }
+.note { font-size: .88rem; color: var(--muted); margin-top: 22px; }
+
+/* activities */
+.legend { display: flex; flex-wrap: wrap; gap: 10px 26px; padding: 16px 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; margin-bottom: 24px; }
+.legend div { display: flex; align-items: center; gap: 10px; font-size: .9rem; color: var(--muted); }
+.prog { padding-top: 38px; }
+.prog > h3 { padding-bottom: 10px; border-bottom: 1px solid var(--line2); margin-bottom: 14px; }
+.pdesc { color: var(--ink2); max-width: 70ch; }
+.elist { display: grid; gap: 10px; }
+.event { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+.event summary { display: flex; gap: 16px; align-items: flex-start; padding: 16px 18px; list-style: none; }
+.event[open] { box-shadow: var(--shadow); }
+.edate { flex: 0 0 62px; text-align: center; padding: 7px 0; border-radius: 10px; background: var(--tint); border: 1px solid var(--line); line-height: 1.1; }
+.edate b { display: block; font-family: var(--serif); font-weight: 500; font-size: 1.5rem; color: var(--head); }
+.edate i { display: block; font-style: normal; font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+.edate small { display: block; font-size: .66rem; color: var(--muted); margin-top: 2px; }
+.esum { display: grid; gap: 4px; justify-items: start; min-width: 0; }
+.etitle { font-family: var(--serif); font-size: 1.1rem; color: var(--head); line-height: 1.3; }
+.emeta { font-size: .88rem; color: var(--muted); }
+.event summary::after { content: "+"; margin-left: auto; color: var(--teal); font-size: 1.4rem; line-height: 1; }
+.event[open] summary::after { content: "–"; }
+.ebody { padding: 2px 18px 18px calc(18px + 62px + 16px); }
+.ebody p { color: var(--ink2); font-size: .96rem; }
+@media (max-width: 560px) { .ebody { padding-left: 18px; } }
+
+/* diary + gallery placeholders */
+.diary { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 44px; align-items: start; }
+@media (max-width: 860px) { .diary { grid-template-columns: minmax(0, 1fr); } }
+.fields { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; }
+.fields li { padding: 4px 12px; border-radius: 8px; background: var(--tint); border: 1px solid var(--line); font-size: .86rem; color: var(--ink2); }
+.shots { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); gap: 14px; margin-top: 22px; }
+.shots div { aspect-ratio: 4 / 3; border-radius: 10px; border: 1px dashed var(--line2); background: var(--surface); display: grid; place-items: center; color: var(--muted); font-size: .85rem; }
+.talk h4 { font-size: 1.2rem; }
+.acts { display: flex; flex-wrap: wrap; gap: 6px 22px; }
+
+/* contact + footer */
+.band.dark { background: var(--band); color: var(--band-ink); }
+.band.dark h2, .band.dark h4 { color: #fff; }
+.band.dark .eyebrow { color: var(--band-accent); }
+.band.dark .lead { color: var(--band-ink); }
+.band.dark a { color: #fff; }
+.contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 44px; align-items: start; }
+@media (max-width: 820px) { .contact { grid-template-columns: minmax(0, 1fr); gap: 32px; } }
+.band.dark dt { color: var(--band-accent); }
+.band.dark dd { color: var(--band-ink); }
+.copyrow { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+.copy { font: inherit; font-size: .8rem; font-weight: 600; padding: 4px 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,.35); background: transparent; color: #fff; cursor: pointer; }
+.copy:hover { background: rgba(255,255,255,.12); }
+.plist { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 480px) { .plist { grid-template-columns: minmax(0, 1fr); } }
+.plist a { display: flex; justify-content: space-between; gap: 8px; padding: 12px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,.2); text-decoration: none; font-size: .93rem; }
+.plist a::after { content: "↗"; }
+.plist a:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.45); }
+footer { background: var(--band); color: var(--band-mute); font-size: .88rem; padding-block: 22px; border-top: 1px solid rgba(255,255,255,.1); }
+footer p { margin: 0; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+</style>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#home" aria-label="Dr. Junaid K.C., back to top"><span class="mark" aria-hidden="true">JK</span><span>Dr. Junaid K.C.</span></a>
+    <button class="burger" type="button" id="burger" aria-expanded="false" aria-controls="links" aria-label="Menu">☰</button>
+    <ul class="links" id="links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#activities">Activities</a></li>
+      <li><a href="#diary">Updates</a></li>
+      <li><a href="#teaching">Teaching</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#speaking">Speaking</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Tourism Researcher  ·  Anthropologist  ·  Academician &amp; Educator  ·  Researcher in Accessible &amp; Sustainable Tourism</p>
+      <h1>Dr. Junaid K.C.</h1>
+      <p class="role">Head and Assistant Professor, PG Department of Tourism &amp; Management</p>
+      <p class="aff">Naipunnya School of Management · Cherthala, Kerala, India</p>
+      <p class="intro">I research how tourism can be accessible, sustainable and community-centred, from the Himalayas to the Kerala coast, and I teach and mentor the next generation of tourism professionals and researchers.</p>
+      <div class="cta">
+        <a class="btn fill" href="#research">Explore my research</a>
+        <a class="btn line" href="#publications">Publications</a>
+        <a class="btn line" href="#contact">Get in touch</a>
+      </div>
+      <ul class="plinks" aria-label="Academic and professional profiles"><li><a href="https://orcid.org/0000-0002-8577-6320" target="_blank" rel="noopener">ORCID</a></li><li><a href="https://scholar.google.com/citations?user=DUjySa4AAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a></li><li><a href="https://www.scopus.com/authid/detail.uri?authorId=60709038800" target="_blank" rel="noopener">Scopus</a></li><li><a href="https://www.webofscience.com/wos/author/record/ADD-1067-2022" target="_blank" rel="noopener">Web of Science</a></li><li><a href="https://www.researchgate.net/profile/Junaid-Kc" target="_blank" rel="noopener">ResearchGate</a></li><li><a href="https://uttara.academia.edu/JunaidKc" target="_blank" rel="noopener">Academia.edu</a></li><li><a href="https://www.linkedin.com/in/junaidkc/" target="_blank" rel="noopener">LinkedIn</a></li></ul>
+    </div>
+    <div class="portrait">
+      <div class="arch" role="img" aria-label="Portrait placeholder"><span>JK</span></div>
+      <div class="pcard"><small>Current position</small><b>Head, PG Department of Tourism &amp; Management</b>Naipunnya School of Management</div>
+    </div>
+  </div>
+</section>
+
+<section class="band tint" id="about">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow">About</p><h2>About me</h2><p class="lead">Advancing inclusive and community-centred tourism through interdisciplinary research, higher education and global collaboration.</p></div>
+    <div class="about">
+      <div class="prose"><p>Dr. Junaid K.C. is a tourism researcher, anthropologist and educator. He is Head and Assistant Professor in the PG Department of Tourism &amp; Management at Naipunnya School of Management, Cherthala, Kerala (affiliated to the University of Kerala).</p><p>He holds a Ph.D. in Tourism and Hospitality Management from H.N.B. Garhwal Central University, where his doctoral research examined tourism and hospitality education and training in the Malabar region of Kerala. Alongside the thesis he carried out field studies across Uttarakhand and the wider Indian Himalayan Region, with a focus on sustainable mountain tourism. His MBA in Tourism and MA in Anthropology were completed at Pondicherry Central University, and his B.Com is in Finance.</p><p>His work spans accessible and inclusive tourism, Himalayan and mountain tourism, sustainable and community-based tourism, tourism education and training, livelihoods, and the anthropology of tourism. He is Managing Editor of the Himalayan Tourism magazine, editor of volumes with IGI Global, Apple Academic Press (Taylor &amp; Francis Group) and Emerald Publishing, and a National Fellow of the Ministry of Social Justice &amp; Empowerment, Government of India (December 2020). His accessible-tourism work is connected with PUPUZO (United for Rural and Inclusive Tourism).</p><blockquote class="quote">I traveled alone throughout India, immersing myself in the vibrant villages of mountains, deserts, seashores, and islands. My journeys are to observe people and experience the richness of reality.</blockquote></div>
+      <aside class="card" aria-label="At a glance">
+        <h4>At a glance</h4>
+        <dl>
+          <dt>Position</dt><dd>Head and Assistant Professor, PG Department of Tourism &amp; Management</dd>
+          <dt>Institution</dt><dd>Naipunnya School of Management<br><span class="m">Affiliated to the University of Kerala</span></dd>
+          <dt>Location</dt><dd>Cherthala, Kerala, India</dd>
+          <dt>Email</dt><dd>drjunaid@naipunnyacollege.ac.in</dd>
+        </dl>
+      </aside>
+    </div>
+
+    <h3 class="sub">Education</h3>
+    <div><article class="tl"><p class="tl-k">Ph.D.</p><div><h4>Tourism and Hospitality Management</h4><p class='m'>H.N.B. Garhwal Central University</p><p>Research on tourism and hospitality education and training in the Malabar region of Kerala, examining developmental stages, challenges and opportunities. Field studies across Uttarakhand and the Indian Himalayan Region on sustainable mountain tourism practices. Completed at the Centre for Mountain Tourism and Hospitality Studies (CMTHS).</p></div></article><article class="tl"><p class="tl-k">MBA</p><div><h4>Tourism &amp; Travel Management</h4><p class='m'>Pondicherry Central University</p><p>Dissertation: &quot;A Study on Slum Tourism with Special Reference to Dharavi Slum, Mumbai&quot;.</p></div></article><article class="tl"><p class="tl-k">MA</p><div><h4>Anthropology (Socio-Cultural)</h4><p class='m'>Pondicherry Central University</p><p>Dissertation: &quot;Impact of Modernisation among the Adiya Tribe of Thrissilery Village, Wayanad&quot;, based on extensive ethnographic fieldwork.</p></div></article><article class="tl"><p class="tl-k">B.Com</p><div><h4>Finance</h4><p class='m ph-i'>Institution to be added</p></div></article></div>
+
+    <h3 class="sub">Qualifications, fellowships and recognition</h3>
+    <div class="grid g2"><article class="card"><p class="m">June 2025</p><h4>UGC NET – Management</h4><p>Qualified UGC NET in Management (conducted by the National Testing Agency and University Grants Commission).</p></article><article class="card"><p class="m">June 2024</p><h4>UGC JRF &amp; NET – Anthropology</h4><p>Qualified UGC JRF and NET in Anthropology (conducted by the National Testing Agency and University Grants Commission).</p></article><article class="card"><p class="m">June 2018 and December 2020</p><h4>UGC NET – Tourism Administration &amp; Management</h4><p>Qualified UGC NET in Tourism Administration &amp; Management, qualifying for lectureship and research roles in higher education institutions in India.</p></article><article class="card"><p class="m">December 2020</p><h4>National Fellowship (India)</h4><p>National Fellowship funded by the Ministry of Social Justice &amp; Empowerment, Government of India, New Delhi, supporting doctoral research.</p></article></div>
+    <ul class="chips" aria-label="Recognition"><li>Course Creator for Central University (CSU)</li><li>Faculty Mentor, Global Hospitality Fellows</li><li>Multiple UGC NET/JRF qualifications</li><li>Managing Editor, Himalayan Tourism</li><li>Reviewer</li><li>Ganga Guide (certified)</li></ul>
+
+    <h3 class="sub">Editorial responsibilities</h3>
+    <div><article class="row"><div><p class="m">Managing Editor</p><h4><a class="plainlink" href="https://www.himalayantourismmagazinehnbgu.com/" target="_blank" rel="noopener">Himalayan Tourism</a></h4><p class='m s'>Centre for Mountain Tourism &amp; Hospitality Studies, H.N.B. Garhwal Central University</p></div><p>A quarterly online magazine.</p></article><article class="row"><div><p class="m">Editor</p><h4><a class="plainlink" href="https://www.routledge.com/Himalayan-Mountain-Tourism-Toward-Sustainable-Adventure-Tourism/Bagri-KC/p/book/9781998511181" target="_blank" rel="noopener">Himalayan Mountain Tourism: Toward Sustainable Adventure Tourism</a></h4><p class='m s'>Apple Academic Press (Taylor &amp; Francis Group), 2026</p></div><p>A volume on adventure tourism in the Himalayan region, spanning India, Nepal, China, Tibet, Pakistan and Bhutan.</p></article><article class="row"><div><p class="m">Editor</p><h4><a class="plainlink" href="https://www.igi-global.com/book/entrepreneurship-education-tourism-hospitality-management/278795" target="_blank" rel="noopener">Entrepreneurship Education in Tourism and Hospitality Management</a></h4><p class='m s'>IGI Global, 2022</p></div><p>Cases of entrepreneurship education in tourism and hospitality worldwide, and the next generation of tourism and hospitality entrepreneurs.</p></article><article class="row"><div><p class="m">Editor</p><h4><a class="plainlink" href="https://books.google.co.in/books/about/Climate_Change_and_Human_Wildlife_Confli.html" target="_blank" rel="noopener">Climate Change and Human Wildlife Conflicts in Indian Himalayan Region</a></h4><p class='m s'>Emerald Publishing (forthcoming)</p></div><p>Sustainable strategies for conservation, stakeholders and local communities.</p></article><article class="row"><div><p class="m">Reviewer</p><h4>Reviewer</h4></div><p>Journals and publishers to be listed.</p></article></div>
+
+    <h3 class="sub">Professional memberships</h3>
+    <div class="grid g2"><article class="card"><h4>India Higher Education Research Network (IHERN)</h4><p>A collective of scholars in higher education in India, working to enhance research and studies in higher education and build a research ecosystem that can feed into policy making.</p></article><article class="card"><h4>Inter-agency Network for Education in Emergencies (INEE)</h4><p>An open, global network of members working within a humanitarian and development framework to ensure the right to quality, safe, relevant and equitable education.</p></article><article class="card"><h4>World Leisure Organization (WLO), Spain</h4><p>A network of leisure professionals committed to enlarging choice, affirming and enriching cultural identities and promoting sustainable and well distributed economic growth through leisure.</p></article><article class="card"><h4>United India Anthropology Forum (UIAF) – Life Member</h4><p>An interactive platform for anthropologists working and practising in India.</p></article></div>
+
+    <h3 class="sub">Courses, certifications and skills</h3>
+    <div class="grid g2">
+      <div><article class="row one"><h4>Astronomy and Astrotourism (AAA) Course</h4><p class="m">Facilitated by Dr Hannah Dalgleish (University of Namibia and University of Oxford) and Dr Meghan Hughes (University of Oxford)</p><p class="m s">August–September 2021</p></article><article class="row one"><h4>Digital Marketing (online course)</h4><p class="m">Globsyn Business School, Kriparampur, West Bengal</p><p class="m s">Certificate no. GBSO-001-2020-14267</p></article><article class="row one"><h4>Tourism and Sustainability, through SDGs</h4><p class="m">Sustainable Tourism Impact Lab, Taylor&#x27;s University, Malaysia</p></article><article class="row one"><h4>Dyslexia: Supporting children with difficulties in reading and writing</h4><p class="m">University of London, via Coursera (MOOC)</p><p class="m s">2018–19</p></article></div>
+      <div class="card"><h4>Software and technical skills</h4><ul class="chips"><li>Atlas.ti</li><li>NVivo</li><li>SPSS</li><li>Mendeley</li><li>Microsoft Office (advanced tools)</li><li>Web development</li><li>Graphic design</li><li>SEO tools</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="research">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow">Research</p><h2>Research interests</h2><p class="lead">My research sits at the meeting point of tourism studies and anthropology. It looks at how destinations, communities and institutions can make tourism more inclusive, sustainable and genuinely beneficial for the people who live there, using ethnographic, qualitative and quantitative approaches.</p></div>
+    <div class="grid gi"><article class="card int"><h3>Accessible Tourism</h3><p>Advancing accessible tourism systems that enable full and equal participation in travel and leisure for persons with disabilities, older persons and people with diverse access needs, aligned with human rights, sustainability and universal design. Connected with PUPUZO (United for Rural and Inclusive Tourism).</p><ul class="kw"><li>Inclusive tourism</li><li>Universal design</li><li>PUPUZO</li></ul></article><article class="card int"><h3>Himalayan &amp; Mountain Tourism</h3><p>Field studies across Uttarakhand and the Indian Himalayan Region, a systematic review of 1,036 studies (1977 to August 2023) on tourism research in the region, and the edited volume Himalayan Mountain Tourism: Toward Sustainable Adventure Tourism (2026).</p><ul class="kw"><li>Uttarakhand</li><li>Adventure tourism</li><li>Local governance</li></ul></article><article class="card int"><h3>Sustainable Tourism</h3><p>Thematic analysis of four decades of sustainability research in Himalayan tourism and hospitality, responsible tourism, and the forthcoming edited volume on climate change and human–wildlife conflict in the Indian Himalayan Region.</p><ul class="kw"><li>Responsible tourism</li><li>Climate change</li><li>Blue economy</li></ul></article><article class="card int"><h3>Community-Based Tourism</h3><p>Community-centred and community-driven approaches to tourism planning, including homestays in Uttarakhand, local governance in Himalayan adventure tourism and stakeholder participation in destination development.</p><ul class="kw"><li>Homestays</li><li>Participation</li><li>Local institutions</li></ul></article><article class="card int"><h3>Tourism Education &amp; Training</h3><p>Doctoral research on tourism and hospitality education and training in the Malabar region of Kerala, with studies on entrepreneurship education in postgraduate tourism programmes, Skill India in hospitality and learner outcomes. Editor of Entrepreneurship Education in Tourism and Hospitality Management (IGI Global, 2022).</p><ul class="kw"><li>HRD</li><li>Entrepreneurship education</li><li>Skill India</li></ul></article><article class="card int"><h3>Tourism &amp; Livelihood Generation</h3><p>Studies of homestays in Uttarakhand, employee-to-entrepreneur transitions and financing of SMEs in Indian tourism, and social entrepreneurship in ecotourism.</p><ul class="kw"><li>Tourism entrepreneurship</li><li>SMEs</li><li>Homestays</li></ul></article><article class="card int"><h3>Anthropology &amp; Tourism</h3><p>Ethnographic and netnographic research, including an ethnographic profile of the Adiya tribe of Wayanad, slum tourism in Dharavi, drug tourism, voluntourism and netnography as a research method in India.</p><ul class="kw"><li>Ethnography</li><li>Netnography</li><li>Cultural change</li></ul></article></div>
+    <h3 class="sub">Methods and fieldwork</h3>
+    <div class="grid g4"><article class="plain"><h4>Ethnography &amp; netnography</h4><p>Participant observation, in-depth interviews and online ethnography in tribal, destination and digital settings.</p></article><article class="plain"><h4>Systematic reviews &amp; thematic analysis</h4><p>Large-scale literature reviews across Scopus, Web of Science, Google Scholar and The Lens.</p></article><article class="plain"><h4>Content analysis</h4><p>Syllabus and document analysis of tourism programmes using Atlas.ti.</p></article><article class="plain"><h4>Survey research &amp; SEM</h4><p>Primary surveys analysed with IBM SPSS and SPSS Amos structural equation modelling.</p></article></div>
+    <p class="m" style="margin-top:22px">Fieldwork settings</p>
+    <ul class="chips" style="margin-top:6px"><li>Uttarakhand and the Indian Himalayan Region</li><li>Malabar region, Kerala</li><li>Wayanad, Kerala (Adiya community)</li><li>Puducherry</li><li>Dharavi, Mumbai</li></ul>
+  </div>
+</section>
+
+<section class="band tint" id="publications">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow">Scholarship</p><h2>Publications</h2><p class="lead">Journal articles, books, edited volumes, book chapters and conference papers. Search by title, author, journal or identifier.</p></div>
+    <div class="bar">
+      <label class="search"><span class="sr">Search publications</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <input type="search" id="pub-q" placeholder="Search title, author, journal, DOI, ISBN…" autocomplete="off"></label>
+      <label class="yearsel"><span class="sr">Filter by year</span><select id="pub-y"><option value="">All years</option><option value="2027">2027</option><option value="2026">2026</option><option value="2024">2024</option><option value="2023">2023</option><option value="2022">2022</option><option value="2021">2021</option><option value="2020">2020</option><option value="2019">2019</option></select></label>
+    </div>
+    <div class="cs" id="pub-cats" role="group" aria-label="Filter by category"><button type="button" class="chip on" data-cat="all">All <b>29</b></button><button type="button" class="chip" data-cat="journal-article">Journal Articles <b>11</b></button><button type="button" class="chip" data-cat="book">Books <b>2</b></button><button type="button" class="chip" data-cat="edited-volume">Edited Volumes <b>3</b></button><button type="button" class="chip" data-cat="book-chapter">Book Chapters <b>6</b></button><button type="button" class="chip" data-cat="conference-paper">Conference Papers <b>7</b></button></div>
+    <p class="count" id="pub-n" aria-live="polite">29 publications</p>
+    <ol class="pubs" id="pub-list" style="list-style:none;padding:0;margin:0"><li class="pub" data-cat="edited-volume" data-year="2027" data-text="climate change and human wildlife conflicts in indian himalayan region: sustainable strategies for conservation, stakeholders and local communities   2027     emerald publishing">
+<div class="pub-top"><span class="tag">Edited volume</span><span class="tag tag-a">Forthcoming</span><span class="pub-year">2027</span></div>
+<h3>Climate Change and Human Wildlife Conflicts in Indian Himalayan Region: Sustainable Strategies for Conservation, Stakeholders and Local Communities</h3><p class="pub-auth">Role: Editor</p><p class="pub-venue">Emerald Publishing</p><div class="pub-acts"><a class="arrow" href="https://books.google.co.in/books/about/Climate_Change_and_Human_Wildlife_Confli.html" target="_blank" rel="noopener">Book details</a><details class="abs"><summary>Abstract</summary><p>Explores the escalating impacts of climate change on human–wildlife conflicts across the globe, with a special focus on the ecologically fragile Indian Himalayan region, and highlights solutions including community-based conservation, policy interventions and technological advancements. Status: in production.</p></details></div></li>
+<li class="pub" data-cat="book-chapter" data-year="2026" data-text="balancing nature and economy: toward sustainable and affordable adventure tourism in himalayan terrains  mountain tourism in perspective of the himalaya 2026  9781998511181   apple academic press">
+<div class="pub-top"><span class="tag">Book chapter</span><span class="tag tag-a">Forthcoming</span><span class="pub-year">2026</span></div>
+<h3>Balancing Nature and Economy: Toward Sustainable and Affordable Adventure Tourism in Himalayan Terrains</h3><p class="pub-venue"><em>Mountain Tourism in Perspective of the Himalaya</em>. Apple Academic Press</p><p class="pub-ids"><span>ISBN: 9781998511181</span></p><div class="pub-acts"></div></li>
+<li class="pub" data-cat="edited-volume" data-year="2026" data-text="himalayan mountain tourism: toward sustainable adventure tourism s.c. bagri &amp; junaid k.c. (eds.)  2026  9781998511181   apple academic press (in co-publishing with crc press/taylor &amp; francis group; distribution by routledge)">
+<div class="pub-top"><span class="tag">Edited volume</span><span class="pub-year">2026</span></div>
+<h3>Himalayan Mountain Tourism: Toward Sustainable Adventure Tourism</h3><p class="pub-auth">S.C. Bagri &amp; Junaid K.C. (Eds.)</p><p class="pub-venue">Apple Academic Press (in co-publishing with CRC Press/Taylor &amp; Francis Group; distribution by Routledge)</p><p class="pub-ids"><span>ISBN: 9781998511181</span></p><div class="pub-acts"><a class="arrow" href="https://www.routledge.com/Himalayan-Mountain-Tourism-Toward-Sustainable-Adventure-Tourism/Bagri-KC/p/book/9781998511181" target="_blank" rel="noopener">View on Routledge</a><details class="abs"><summary>Abstract</summary><p>A comprehensive volume focusing on adventure tourism in the Himalayan region. It brings together insights from researchers, adventurers and conservationists across India, Nepal, China, Tibet, Pakistan and Bhutan, and serves as a guide to the dynamics of adventure tourism in the region.</p></details></div></li>
+<li class="pub" data-cat="book-chapter" data-year="2026" data-text="local governance dynamics in himalayan adventure tourism: a comprehensive inquiry into local institutions, stakeholder engagement, and sustainable practices  himalayan mountain tourism: toward sustainable adventure tourism 2026  9781998511181   apple academic press">
+<div class="pub-top"><span class="tag">Book chapter</span><span class="tag tag-a">Forthcoming</span><span class="pub-year">2026</span></div>
+<h3>Local Governance Dynamics in Himalayan Adventure Tourism: A Comprehensive Inquiry into Local Institutions, Stakeholder Engagement, and Sustainable Practices</h3><p class="pub-venue"><em>Himalayan Mountain Tourism: Toward Sustainable Adventure Tourism</em>. Apple Academic Press</p><p class="pub-ids"><span>ISBN: 9781998511181</span></p><div class="pub-acts"></div></li>
+<li class="pub" data-cat="journal-article" data-year="2024" data-text="analysing tourism research in the indian himalayan region to identify gaps and propose sustainable development strategies divya, n. v., junaid, k. c., prakash, p. v., chauhan, h. b. s., &amp; dhodi, r. k. journal of mountain research 2024   p-issn 0974-3030; e-issn 2582-5011 19(1), 285–297 society for himalayan action research and development">
+<div class="pub-top"><span class="tag">Journal article</span><span class="pub-year">2024</span></div>
+<h3>Analysing Tourism Research in the Indian Himalayan Region to Identify Gaps and Propose Sustainable Development Strategies</h3><p class="pub-auth">Divya, N. V., Junaid, K. C., Prakash, P. V., Chauhan, H. B. S., &amp; Dhodi, R. K.</p><p class="pub-venue"><em>Journal of Mountain Research</em>, 19(1), 285–297. Society for Himalayan Action Research and Development</p><p class="pub-ids"><span>ISSN: p-ISSN 0974-3030; e-ISSN 2582-5011</span></p><div class="pub-acts"><details class="abs"><summary>Abstract</summary><p>A systematic literature review with thematic analysis of 1,036 published works (1977 to August 2023) on tourism in the Indian Himalayan Region, identifying research gaps and advocating participatory tourism development involving local communities, government bodies and the private sector.</p></details></div></li>
+<li class="pub" data-cat="journal-article" data-year="2024" data-text="evaluating service quality in semi-high-speed trains: evidence from the vande bharat express  journal of tourism 2024   0972-7310 vol. xxv, issue 2, 1–11 ">
+<div class="pub-top"><span class="tag">Journal article</span><span class="pub-year">2024</span></div>
+<h3>Evaluating Service Quality in Semi-High-Speed Trains: Evidence from the Vande Bharat Express</h3><p class="pub-venue"><em>Journal of Tourism</em>, Vol. XXV, Issue 2, 1–11</p><p class="pub-ids"><span>ISSN: 0972-7310</span></p><div class="pub-acts"></div></li>
+<li class="pub" data-cat="journal-article" data-year="2024" data-text="learner experiences and outcomes of tourism and hospitality education and training in india  journal of tourism 2024   0972-7310 vol. xxv, issue 1, 86–100 ">
+<div class="pub-top"><span class="tag">Journal article</span><span class="pub-year">2024</span></div>
+<h3>Learner Experiences and Outcomes of Tourism and Hospitality Education and Training in India</h3><p class="pub-venue"><em>Journal of Tourism</em>, Vol. XXV, Issue 1, 86–100</p><p class="pub-ids"><span>ISSN: 0972-7310</span></p><div class="pub-acts"></div></li>
+<li class="pub" data-cat="journal-article" data-year="2023" data-text="exploring the current status, opportunities, and challenges of the homestays in uttarakhand prajapati, v. p., junaid, k. c., &amp; dhodi, r. k. journal of mountain research 2023 10.51220/jmr.v18i2.23  p-issn 0974-3030; e-issn 2582-5011 18(2), 223–234 ">
+<div class="pub-top"><span class="tag">Journal article</span><span class="pub-year">2023</span></div>
+<h3>Exploring the Current Status, Opportunities, and Challenges of the Homestays in Uttarakhand</h3><p class="pub-auth">Prajapati, V. P., Junaid, K. C., &amp; Dhodi, R. K.</p><p class="pub-venue"><em>Journal of Mountain Research</em>, 18(2), 223–234</p><p class="pub-ids"><span>DOI: <a href="https://doi.org/10.51220/jmr.v18i2.23" target="_blank" rel="noopener">10.51220/jmr.v18i2.23</a></span><span>ISSN: p-ISSN 0974-3030; e-ISSN 2582-5011</span></p><div class="pub-acts"><details class="abs"><summary>Abstract</summary><p>Examines the current state, employment impact and government support of homestays in Uttarakhand, together with their potential for sustainable tourism, heritage preservation and community income, and the challenges of limited community engagement, resources and infrastructure.</p></details></div></li>
+<li class="pub" data-cat="conference-paper" data-year="2023" data-text="[title to be confirmed] local governance and tourism in india  national conference on &#x27;local governance in india@75: issues, challenges and contemporary developments&#x27; 2023    25–26 march 2023 special centre for the study of law and governance, jawaharlal nehru university, new delhi">
+<div class="pub-top"><span class="tag">Conference paper</span><span class="pub-year">2023</span></div>
+<h3>[Title to be confirmed] Local governance and tourism in India</h3><p class="pub-venue"><em>National Conference on &#x27;Local Governance in India@75: Issues, Challenges and Contemporary Developments&#x27;</em>, 25–26 March 2023. Special Centre for the Study of Law and Governance, Jawaharlal Nehru University, New Delhi</p><div class="pub-acts"><details class="abs"><summary>Abstract</summary><p>A theoretical paper on the relationship between local governance and tourism in India, covering infrastructure, community participation, stakeholder collaboration, environmental sustainability and cultural preservation, with recommendations for strengthening local institutions and capacity.</p></details></div></li>
+<li class="pub" data-cat="book-chapter" data-year="2022" data-text="entrepreneurship education in postgraduate tourism programs: a content analysis of syllabi from indian universities  entrepreneurship education in tourism and hospitality management 2022 10.4018/978-1-7998-9510-7.ch002 9781799895107   igi global, usa">
+<div class="pub-top"><span class="tag">Book chapter</span><span class="pub-year">2022</span></div>
+<h3>Entrepreneurship Education in Postgraduate Tourism Programs: A Content Analysis of Syllabi From Indian Universities</h3><p class="pub-venue"><em>Entrepreneurship Education in Tourism and Hospitality Management</em>. IGI Global, USA</p><p class="pub-ids"><span>DOI: <a href="https://doi.org/10.4018/978-1-7998-9510-7.ch002" target="_blank" rel="noopener">10.4018/978-1-7998-9510-7.ch002</a></span><span>ISBN: 9781799895107</span></p><div class="pub-acts"><details class="abs"><summary>Abstract</summary><p>Studies the current status of entrepreneurship education in tourism in India through a content analysis of postgraduate tourism syllabi from Indian higher education institutions, analysed using Atlas.ti. Findings indicate that entrepreneurship education is mostly treated as a core module rather than an elective or part of other courses.</p></details></div></li>
+<li class="pub" data-cat="edited-volume" data-year="2022" data-text="entrepreneurship education in tourism and hospitality management   2022 10.4018/978-1-7998-9510-7 9781799895107   igi global, usa">
+<div class="pub-top"><span class="tag">Edited volume</span><span class="pub-year">2022</span></div>
+<h3>Entrepreneurship Education in Tourism and Hospitality Management</h3><p class="pub-auth">Role: Editor</p><p class="pub-venue">IGI Global, USA</p><p class="pub-ids"><span>DOI: <a href="https://doi.org/10.4018/978-1-7998-9510-7" target="_blank" rel="noopener">10.4018/978-1-7998-9510-7</a></span><span>ISBN: 9781799895107</span></p><div class="pub-acts"><a class="arrow" href="https://www.igi-global.com/book/entrepreneurship-education-tourism-hospitality-management/278795" target="_blank" rel="noopener">View on IGI Global</a><details class="abs"><summary>Abstract</summary><p>An in-depth look at cases of entrepreneurship education in the tourism and hospitality industries across the world, their recent changes and developments, and the creation of the next generation of tourism and hospitality entrepreneurs. Covers topics such as digital education and tourism sustainability.</p></details></div></li>
+<li class="pub" data-cat="book-chapter" data-year="2022" data-text="skill india mission programme in the hospitality management for quality products and services  entrepreneurship education in tourism and hospitality management 2022 10.4018/978-1-7998-9510-7.ch007 9781799895107   igi global, usa">
+<div class="pub-top"><span class="tag">Book chapter</span><span class="pub-year">2022</span></div>
+<h3>Skill India Mission Programme in the Hospitality Management for Quality Products and Services</h3><p class="pub-venue"><em>Entrepreneurship Education in Tourism and Hospitality Management</em>. IGI Global, USA</p><p class="pub-ids"><span>DOI: <a href="https://doi.org/10.4018/978-1-7998-9510-7.ch007" target="_blank" rel="noopener">10.4018/978-1-7998-9510-7.ch007</a></span><span>ISBN: 9781799895107</span></p><div class="pub-acts"><details class="abs"><summary>Abstract</summary><p>Analyses the Skill India mission in hospitality and allied sectors through a critical evaluation of policies, schemes, initiatives, trends and challenges in skill training, highlighting the skill gap, constraints in skilling youth, public–private partnership and entrepreneurship initiatives.</p></details></div></li>
+<li class="pub" data-cat="conference-paper" data-year="2022" data-text="voluntourism in puducherry: exploring motivation, experience, satisfaction and revisit intentions of tourists  international conference on &#x27;hospitality and tourism – revival strategies&#x27; 2022    24–26 august 2022 ihm pusa (institute of hotel management, catering technology and applied nutrition), new delhi, and ministry of tourism">
+<div class="pub-top"><span class="tag">Conference paper</span><span class="pub-year">2022</span></div>
+<h3>Voluntourism in Puducherry: Exploring Motivation, Experience, Satisfaction and Revisit Intentions of Tourists</h3><p class="pub-venue"><em>International Conference on &#x27;Hospitality and Tourism – Revival Strategies&#x27;</em>, 24–26 August 2022. IHM Pusa (Institute of Hotel Management, Catering Technology and Applied Nutrition), New Delhi, and Ministry of Tourism</p><div class="pub-acts"></div></li>
+<li class="pub" data-cat="journal-article" data-year="2022" data-text="voluntourism in puducherry: exploring motivation, experience, satisfaction and revisit intentions of tourists venkittaraman, a., junaid, k. c., &amp; dhodi, r. k. pusa journal of hospitality and applied sciences 2022   issn 2395-020x (p); e-issn 2583-2700 (o)  ">
+<div class="pub-top"><span class="tag">Journal article</span><span class="pub-year">2022</span></div>
+<h3>Voluntourism in Puducherry: Exploring Motivation, Experience, Satisfaction and Revisit Intentions of Tourists</h3><p class="pub-auth">Venkittaraman, A., Junaid, K. C., &amp; Dhodi, R. K.</p><p class="pub-venue"><em>PUSA Journal of Hospitality and Applied Sciences</em></p><p class="pub-ids"><span>ISSN: ISSN 2395-020X (P); e-ISSN 2583-2700 (O)</span></p><div class="pub-acts"><details class="abs"><summary>Abstract</summary><p>Studies the motivation, experience, satisfaction and revisit intentions of tourists participating in voluntourism in Puducherry, based on a survey of two organisations (Sristi Village and Atmasanga Environment Alliance) analysed with IBM SPSS and SPSS Amos SEM.</p></details></div></li>
+<li class="pub" data-cat="conference-paper" data-year="2021" data-text="[title to be confirmed] ecotourism social entrepreneurship in uttarakhand  global hospitality and tourism conference on experiential management and marketing (ghtc-2020) 2021    18–20 march 2021 north-eastern hill university (nehu), shillong">
+<div class="pub-top"><span class="tag">Conference paper</span><span class="pub-year">2021</span></div>
+<h3>[Title to be confirmed] Ecotourism social entrepreneurship in Uttarakhand</h3><p class="pub-venue"><em>Global Hospitality and Tourism Conference on Experiential Management and Marketing (GHTC-2020)</em>, 18–20 March 2021. North-Eastern Hill University (NEHU), Shillong</p><div class="pub-acts"><details class="abs"><summary>Abstract</summary><p>Examines the scope, status and challenges of ecotourism social entrepreneurship in Uttarakhand through an analysis of literature and of successful social initiatives in the world, India and Uttarakhand.</p></details></div></li>
+<li class="pub" data-cat="conference-paper" data-year="2021" data-text="[title to be confirmed] systematic literature review of tourism and hospitality education during covid-19  international summit: &#x27;shifting gears in tourism and hospitality in a time of crisis&#x27; 2021    15 july 2021 organised by uk research and innovation and icbt campus in collaboration with the university of sunderland, uk">
+<div class="pub-top"><span class="tag">Conference paper</span><span class="pub-year">2021</span></div>
+<h3>[Title to be confirmed] Systematic literature review of tourism and hospitality education during COVID-19</h3><p class="pub-venue"><em>International Summit: &#x27;Shifting Gears in Tourism and Hospitality in a Time of Crisis&#x27;</em>, 15 July 2021. Organised by UK Research and Innovation and ICBT Campus in collaboration with the University of Sunderland, UK</p><div class="pub-acts"><details class="abs"><summary>Abstract</summary><p>A systematic literature review of articles published worldwide from January 2020 to March 2021 on tourism and hospitality education during COVID-19, analysed with ATLAS.ti, finding a boom in digital education and a transformation of teaching and learning practices.</p></details></div></li>
+<li class="pub" data-cat="journal-article" data-year="2020" data-text="ethnic conflicts and geopolitics: covid-19 augmented chaos versus efforts to restart tourism sector bagri, s. c., &amp; junaid, k. c. skyline business journal 2020    16(1), 73–80 skyline university college, university city of sharjah, uae">
+<div class="pub-top"><span class="tag">Journal article</span><span class="pub-year">2020</span></div>
+<h3>Ethnic Conflicts and Geopolitics: Covid-19 Augmented Chaos versus Efforts to Restart Tourism Sector</h3><p class="pub-auth">Bagri, S. C., &amp; Junaid, K. C.</p><p class="pub-venue"><em>Skyline Business Journal</em>, 16(1), 73–80. Skyline University College, University City of Sharjah, UAE</p><div class="pub-acts"><details class="abs"><summary>Abstract</summary><p>Elaborates on trends in global travel and tourism before and since the COVID-19 pandemic with respect to ethnic conflicts and geopolitics, and on recent government and non-government measures to restart the tourism sector.</p></details></div></li>
+<li class="pub" data-cat="journal-article" data-year="2020" data-text="netnography as a research method in the age of ai and iot – trends in india divya, n. v., manzoor, k., &amp; junaid, k. c. antrocom online journal of anthropology 2020   1973-2880 16(2), 389–395 ">
+<div class="pub-top"><span class="tag">Journal article</span><span class="pub-year">2020</span></div>
+<h3>Netnography as a Research Method in the age of AI and IoT – Trends in India</h3><p class="pub-auth">Divya, N. V., Manzoor, K., &amp; Junaid, K. C.</p><p class="pub-venue"><em>Antrocom Online Journal of Anthropology</em>, 16(2), 389–395</p><p class="pub-ids"><span>ISSN: 1973-2880</span></p><div class="pub-acts"><details class="abs"><summary>Abstract</summary><p>Analyses the current trends and future of India&#x27;s digital space and existing netnographic studies, finding a substantial gap between the scope of netnographic research and the size of India&#x27;s digital population.</p></details></div></li>
+<li class="pub" data-cat="conference-paper" data-year="2019" data-text="drug tourism in india: trends and challenges  national conference 2019    january 2019 central university of kerala">
+<div class="pub-top"><span class="tag">Conference paper</span><span class="pub-year">2019</span></div>
+<h3>Drug Tourism in India: Trends and Challenges</h3><p class="pub-venue"><em>National Conference</em>, January 2019. Central University of Kerala</p><div class="pub-acts"></div></li>
+<li class="pub" data-cat="journal-article" data-year="2019" data-text="drug tourism in india: trends and challenges junaid, k. c., kozhikkattil, m. r., &amp; divya, n. v. international journal of technical research &amp; science 2019   e-issn 2454-2024  ">
+<div class="pub-top"><span class="tag">Journal article</span><span class="pub-year">2019</span></div>
+<h3>Drug Tourism in India: Trends and Challenges</h3><p class="pub-auth">Junaid, K. C., Kozhikkattil, M. R., &amp; Divya, N. V.</p><p class="pub-venue"><em>International Journal of Technical Research &amp; Science</em></p><p class="pub-ids"><span>ISSN: e-ISSN 2454-2024</span></p><div class="pub-acts"><details class="abs"><summary>Abstract</summary><p>Studies drug tourism in Indian society and destinations (Goa, Malana, Kodaikanal, Idukki) using participant observation, in-depth interviews and news reports, and discusses its effects on local communities and how private, public and community participation can reduce its impact.</p></details></div></li>
+<li class="pub" data-cat="conference-paper" data-year="2019" data-text="employee to entrepreneur transition trends and financing of smes in indian tourism industry  international seminar 2019    january 2019 bharathidasan university, tiruchirappalli">
+<div class="pub-top"><span class="tag">Conference paper</span><span class="pub-year">2019</span></div>
+<h3>Employee to Entrepreneur Transition Trends and Financing of SMEs in Indian Tourism Industry</h3><p class="pub-venue"><em>International Seminar</em>, January 2019. Bharathidasan University, Tiruchirappalli</p><div class="pub-acts"></div></li>
+<li class="pub" data-cat="journal-article" data-year="2019" data-text="employee to entrepreneur transition trends and financing of smes in indian tourism industry divya, n. v., junaid, k. c., &amp; riyas, k. m. emperor journal of economics and social science research 2019   2581-8643  ">
+<div class="pub-top"><span class="tag">Journal article</span><span class="pub-year">2019</span></div>
+<h3>Employee to Entrepreneur Transition Trends and Financing of SMEs in Indian Tourism Industry</h3><p class="pub-auth">Divya, N. V., Junaid, K. C., &amp; Riyas, K. M.</p><p class="pub-venue"><em>Emperor Journal of Economics and Social Science Research</em></p><p class="pub-ids"><span>ISSN: 2581-8643</span></p><div class="pub-acts"><details class="abs"><summary>Abstract</summary><p>Examines the transition of waged employees into entrepreneurship in the Indian tourism sector and the challenges of financing tourism SMEs, finding a positive transition rate influenced by digital marketing, accessible financing, government support schemes and low capital and labour requirements.</p></details></div></li>
+<li class="pub" data-cat="conference-paper" data-year="2019" data-text="[title to be confirmed] slum tourism in dharavi, mumbai  national conference on emerging issues in research and development 2019    february 2019 jai narain vyas university, jodhpur, rajasthan">
+<div class="pub-top"><span class="tag">Conference paper</span><span class="pub-year">2019</span></div>
+<h3>[Title to be confirmed] Slum tourism in Dharavi, Mumbai</h3><p class="pub-venue"><em>National Conference on Emerging Issues in Research and Development</em>, February 2019. Jai Narain Vyas University, Jodhpur, Rajasthan</p><div class="pub-acts"><details class="abs"><summary>Abstract</summary><p>Explores slum tourism as a cultural tourism activity from an anthropological perspective, covering the Dharavi community&#x27;s response to slum tours, recent trends, the scope and potential of slum tourism, and tourists&#x27; views.</p></details></div></li>
+<li class="pub" data-cat="book" data-year="" data-text="ethnographic profile of adiya tribe, kerala: modernization and acculturation among adiya tribal communities of thrissilery village, wayanad     979-8723362451   amazon">
+<div class="pub-top"><span class="tag">Book</span><span class="pub-year">n.d.</span></div>
+<h3>Ethnographic Profile of Adiya Tribe, Kerala: Modernization and Acculturation among Adiya Tribal Communities of Thrissilery Village, Wayanad</h3><p class="pub-venue">Amazon</p><p class="pub-ids"><span>ISBN: 979-8723362451</span></p><div class="pub-acts"><a class="arrow" href="https://www.amazon.com/Ethnographic-Profile-Adiya-Tribe-Kerala/dp/B08ZB91BQ9" target="_blank" rel="noopener">View on Amazon</a><details class="abs"><summary>Abstract</summary><p>How did social institutions such as religion, marriage, culture and customs evolve within the Adiya tribe in Kerala, and what external forces have shaped their recent cultural changes? The book presents a detailed ethnographic profile of the Adiya tribe, with dimensions on the impacts of modernisation and acculturation on indigenous culture.</p></details></div></li>
+<li class="pub" data-cat="book" data-year="" data-text="nta ugc net tourism 2022: 1500+ pyq notes     978839235724  asin b0b5nh6gl7 amazon">
+<div class="pub-top"><span class="tag">Book</span><span class="pub-year">n.d.</span></div>
+<h3>NTA UGC NET TOURISM 2022: 1500+ PYQ Notes</h3><p class="pub-venue">ASIN B0B5NH6GL7. Amazon</p><p class="pub-ids"><span>ISBN: 978839235724</span></p><div class="pub-acts"><a class="arrow" href="https://www.amazon.in/NTA-UGC-NET-TOURISM-2022-ebook/dp/B0B5NH6GL7" target="_blank" rel="noopener">View on Amazon</a><details class="abs"><summary>Abstract</summary><p>A last-minute guide for the UGC NTA NET Tourism Administration and Management exam. Prepares candidates for Paper 2 with 1,500+ previous-year questions based on summarised notes.</p></details></div></li>
+<li class="pub" data-cat="book-chapter" data-year="" data-text="re-culture: the contemporary approach for sustainable living  scenario of environmental research and development   978-93-5346-498-1  pp. 169–174 ">
+<div class="pub-top"><span class="tag">Book chapter</span><span class="pub-year">n.d.</span></div>
+<h3>Re-Culture: The Contemporary Approach for Sustainable living</h3><p class="pub-venue"><em>Scenario of Environmental Research and Development</em>, pp. 169–174</p><p class="pub-ids"><span>ISBN: 978-93-5346-498-1</span></p><div class="pub-acts"><details class="abs"><summary>Abstract</summary><p>Introduces the concept of Re-Culture alongside Reduce, Reuse, Recycle, examining the relationship between culture and sustainable, eco-friendly practices and suggesting ways to adapt sustainable-living models to every culture.</p></details></div></li>
+<li class="pub" data-cat="journal-article" data-year="" data-text="sustainability in the indian himalayan region: a thematic analysis of tourism and hospitality research over four decades  international journal of communication networks and information security      zhende publishing, uk">
+<div class="pub-top"><span class="tag">Journal article</span><span class="pub-year">n.d.</span></div>
+<h3>Sustainability in the Indian Himalayan Region: A Thematic Analysis of Tourism and Hospitality Research Over Four Decades</h3><p class="pub-venue"><em>International Journal of Communication Networks and Information Security</em>. Zhende Publishing, UK</p><div class="pub-acts"><details class="abs"><summary>Abstract</summary><p>A thematic analysis identifying nine themes of sustainability in tourism and hospitality research in the Indian Himalayan Region, from environmental and biodiversity conservation to training, education and awareness, and the critical research gaps to be addressed by future studies and policy.</p></details></div></li>
+<li class="pub" data-cat="journal-article" data-year="" data-text="technological innovations in hospitality: an in-depth examination of adoption, customer experience enhancement, operational efficiency, and sustainability  rabindra bharati university journal of economics      ">
+<div class="pub-top"><span class="tag">Journal article</span><span class="pub-year">n.d.</span></div>
+<h3>Technological Innovations in Hospitality: An In-Depth Examination of Adoption, Customer Experience Enhancement, Operational Efficiency, and Sustainability</h3><p class="pub-venue"><em>Rabindra Bharati University Journal of Economics</em></p><div class="pub-acts"><details class="abs"><summary>Abstract</summary><p>Explores emerging technologies transforming the hotel and hospitality sector and their impact on operational efficiency, customer experience and environmental practices, based mainly on secondary data sources.</p></details></div></li>
+<li class="pub" data-cat="book-chapter" data-year="" data-text="tribal women and modernity: case study on adiyan tribe of kerala  indian women: a march towards modernity (eds. amit bhowmick &amp; prabhat kumar singh)   9788183249577   mittal publications, new delhi">
+<div class="pub-top"><span class="tag">Book chapter</span><span class="pub-year">n.d.</span></div>
+<h3>Tribal Women and Modernity: Case study on Adiyan Tribe of Kerala</h3><p class="pub-venue"><em>Indian Women: A March Towards Modernity (eds. Amit Bhowmick &amp; Prabhat Kumar Singh)</em>. Mittal Publications, New Delhi</p><p class="pub-ids"><span>ISBN: 9788183249577</span></p><div class="pub-acts"><details class="abs"><summary>Abstract</summary><p>Analyses the sociocultural, psychological, economic and political changes among tribal women, especially the Adiyan tribe of Kerala, using one month of participant observation, in-depth interviews and ethnographic analysis.</p></details></div></li></ol>
+    <p class="empty" id="pub-empty" hidden>No publications match. Try clearing a filter.</p>
+    <p class="note">Entries marked “[Title to be confirmed]” or without a year are still being completed. Nothing here has been filled in by guesswork.</p>
+  </div>
+</section>
+
+<section class="band" id="activities">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow">Academic life</p><h2>Academic activities</h2><p class="lead">Programmes, symposia, workshops and institutional initiatives that I organise, coordinate, facilitate or attend. Open an entry for details.</p></div>
+    <div class="legend"><div><span class="badge b-organised">Organised</span><span>Conceived and led the event</span></div><div><span class="badge b-coordinated">Coordinated</span><span>Coordinated the programme and logistics</span></div><div><span class="badge b-facilitated">Facilitated</span><span>Facilitated sessions or discussions</span></div><div><span class="badge b-attended">Attended</span><span>Attended as a participant</span></div></div>
+    <div class="bar"><label class="search"><span class="sr">Search activities</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <input type="search" id="act-q" placeholder="Search activities, venues, hosts…" autocomplete="off"></label></div>
+    <div class="cs" id="act-roles" role="group" aria-label="Filter by my role"><button type="button" class="chip on" data-role="all">All roles</button><button type="button" class="chip" data-role="organised">Organised <b>0</b></button><button type="button" class="chip" data-role="coordinated">Coordinated <b>0</b></button><button type="button" class="chip" data-role="facilitated">Facilitated <b>0</b></button><button type="button" class="chip" data-role="attended">Attended <b>11</b></button></div>
+    <div id="progs"><section class="prog" data-prog><h3>International Interdisciplinary Talk Series</h3><div class="elist"><p class="ph-box">Events and details for this programme will be added soon.</p></div></section><section class="prog" data-prog><h3>Vembanad Dialogues Symposium</h3><div class="elist"><p class="ph-box">Events and details for this programme will be added soon.</p></div></section><section class="prog" data-prog><h3>Faculty Development Programmes</h3><div class="elist"><details class="event" data-role="attended" data-text="aicte atal faculty development programme: &#x27;flame to feast: decoding the art of culinary secrets across cultural and seasonal cycles&#x27;  pcte college of hotel management six-day aicte atal faculty development programme."><summary>
+<span class="edate"><b>16</b><i>Dec</i><small>2024</small></span>
+<span class="esum"><span class="badge b-attended">Attended</span><span class="etitle">AICTE ATAL Faculty Development Programme: &#x27;Flame to Feast: Decoding the art of Culinary Secrets across Cultural and Seasonal Cycles&#x27;</span><span class="emeta">16–21 December 2024 · PCTE College of Hotel Management</span></span></summary>
+<div class="ebody"><dl><dt>Date</dt><dd>16–21 December 2024</dd><dt>Hosted by</dt><dd>PCTE College of Hotel Management</dd><dt>My role</dt><dd>Attended</dd></dl><p>Six-day AICTE ATAL Faculty Development Programme.</p><p class="ph">Poster, photographs, speakers and related links can be added here.</p></div></details><details class="event" data-role="attended" data-text="faculty development programme: &#x27;harnessing emerging technologies for sustainable growth – transforming travel &amp; tourism in 2024 and beyond&#x27;  amity institute of travel &amp; tourism, kolkata five-day faculty development programme."><summary>
+<span class="edate"><b>24</b><i>Jun</i><small>2024</small></span>
+<span class="esum"><span class="badge b-attended">Attended</span><span class="etitle">Faculty Development Programme: &#x27;Harnessing emerging technologies for sustainable growth – transforming travel &amp; tourism in 2024 and beyond&#x27;</span><span class="emeta">24–28 June 2024 · Amity Institute of Travel &amp; Tourism, Kolkata</span></span></summary>
+<div class="ebody"><dl><dt>Date</dt><dd>24–28 June 2024</dd><dt>Hosted by</dt><dd>Amity Institute of Travel &amp; Tourism, Kolkata</dd><dt>My role</dt><dd>Attended</dd></dl><p>Five-day Faculty Development Programme.</p><p class="ph">Poster, photographs, speakers and related links can be added here.</p></div></details><details class="event" data-role="attended" data-text="nep orientation &amp; sensitization programme  malaviya mission teacher training centre (mmttc), h.n.b. garhwal university "><summary>
+<span class="edate"><b>19</b><i>May</i><small>2024</small></span>
+<span class="esum"><span class="badge b-attended">Attended</span><span class="etitle">NEP Orientation &amp; Sensitization Programme</span><span class="emeta">19–30 May 2024 · Malaviya Mission Teacher Training Centre (MMTTC), H.N.B. Garhwal University</span></span></summary>
+<div class="ebody"><dl><dt>Date</dt><dd>19–30 May 2024</dd><dt>Hosted by</dt><dd>Malaviya Mission Teacher Training Centre (MMTTC), H.N.B. Garhwal University</dd><dt>My role</dt><dd>Attended</dd></dl><p class="ph">Poster, photographs, speakers and related links can be added here.</p></div></details><details class="event" data-role="attended" data-text="online international faculty development programme: &#x27;challenges for students in the new normal&#x27;  government arts college (autonomous), coimbatore five-day online international faculty development programme."><summary>
+<span class="edate"><b>13</b><i>Feb</i><small>2023</small></span>
+<span class="esum"><span class="badge b-attended">Attended</span><span class="etitle">Online International Faculty Development Programme: &#x27;Challenges for Students in the New Normal&#x27;</span><span class="emeta">13–17 February 2023 · Government Arts College (Autonomous), Coimbatore</span></span></summary>
+<div class="ebody"><dl><dt>Date</dt><dd>13–17 February 2023</dd><dt>Hosted by</dt><dd>Government Arts College (Autonomous), Coimbatore</dd><dt>My role</dt><dd>Attended</dd></dl><p>Five-day online international Faculty Development Programme.</p><p class="ph">Poster, photographs, speakers and related links can be added here.</p></div></details><details class="event" data-role="attended" data-text="faculty development programme: &#x27;upgradation in teaching methodology &amp; research as emerging trends in hospitality industry&#x27;  amity university five-day faculty development programme."><summary>
+<span class="edate"><b>11</b><i>Jul</i><small>2022</small></span>
+<span class="esum"><span class="badge b-attended">Attended</span><span class="etitle">Faculty Development Programme: &#x27;Upgradation in Teaching Methodology &amp; Research as emerging trends in Hospitality Industry&#x27;</span><span class="emeta">11–15 July 2022 · Amity University</span></span></summary>
+<div class="ebody"><dl><dt>Date</dt><dd>11–15 July 2022</dd><dt>Hosted by</dt><dd>Amity University</dd><dt>My role</dt><dd>Attended</dd></dl><p>Five-day Faculty Development Programme.</p><p class="ph">Poster, photographs, speakers and related links can be added here.</p></div></details><details class="event" data-role="attended" data-text="faculty development programme: &#x27;modern india in the post-colonial era: society, economy, politics &amp; emerging trends&#x27;  amity university five-day faculty development programme."><summary>
+<span class="edate"><b>4</b><i>Jul</i><small>2022</small></span>
+<span class="esum"><span class="badge b-attended">Attended</span><span class="etitle">Faculty Development Programme: &#x27;Modern India in the Post-Colonial Era: Society, Economy, Politics &amp; Emerging Trends&#x27;</span><span class="emeta">4–8 July 2022 · Amity University</span></span></summary>
+<div class="ebody"><dl><dt>Date</dt><dd>4–8 July 2022</dd><dt>Hosted by</dt><dd>Amity University</dd><dt>My role</dt><dd>Attended</dd></dl><p>Five-day Faculty Development Programme.</p><p class="ph">Poster, photographs, speakers and related links can be added here.</p></div></details></div></section><section class="prog" data-prog><h3>Research Methodology &amp; SPSS Workshops</h3><div class="elist"><p class="ph-box">Events and details for this programme will be added soon.</p></div></section><section class="prog" data-prog><h3>UGC NET/JRF Coaching Initiatives</h3><div class="elist"><p class="ph-box">Events and details for this programme will be added soon.</p></div></section><section class="prog" data-prog><h3>Student Development Programmes</h3><div class="elist"><p class="ph-box">Events and details for this programme will be added soon.</p></div></section><section class="prog" data-prog><h3>PRATIBHA – Young Leaders Forum</h3><div class="elist"><p class="ph-box">Events and details for this programme will be added soon.</p></div></section><section class="prog" data-prog><h3>TechSphere ICT Skill Initiative</h3><div class="elist"><p class="ph-box">Events and details for this programme will be added soon.</p></div></section><section class="prog" data-prog><h3>Industrial Visits &amp; Experiential Learning</h3><div class="elist"><p class="ph-box">Events and details for this programme will be added soon.</p></div></section><section class="prog" data-prog><h3>Academic Publishing &amp; Editorial Initiatives</h3><p class="pdesc">Editorial responsibilities include serving as Managing Editor of the Himalayan Tourism magazine and editing volumes with IGI Global, Apple Academic Press and Emerald Publishing.</p><div class="elist"><p class="ph-box">Events and details for this programme will be added soon.</p></div></section><section class="prog" data-prog><h3>Workshops, Courses &amp; Training Attended</h3><p class="pdesc">Faculty development programmes, workshops and training courses attended for continuing professional development.</p><div class="elist"><details class="event" data-role="attended" data-text="user awareness programme on national digital library of india (ndli) and ndli club  ndli club of hnbgu and indian institute of technology, kharagpur "><summary>
+<span class="edate"><b>1</b><i>Dec</i><small>2024</small></span>
+<span class="esum"><span class="badge b-attended">Attended</span><span class="etitle">User Awareness Programme on National Digital Library of India (NDLI) and NDLI Club</span><span class="emeta">December 2024 · NDLI Club of HNBGU and Indian Institute of Technology, Kharagpur</span></span></summary>
+<div class="ebody"><dl><dt>Date</dt><dd>December 2024</dd><dt>Hosted by</dt><dd>NDLI Club of HNBGU and Indian Institute of Technology, Kharagpur</dd><dt>My role</dt><dd>Attended</dd></dl><p class="ph">Poster, photographs, speakers and related links can be added here.</p></div></details><details class="event" data-role="attended" data-text="online workshop on grammarly premium  ndli club of hnbgu and indian institute of technology, kharagpur "><summary>
+<span class="edate"><b>1</b><i>Nov</i><small>2024</small></span>
+<span class="esum"><span class="badge b-attended">Attended</span><span class="etitle">Online Workshop on Grammarly Premium</span><span class="emeta">November 2024 · NDLI Club of HNBGU and Indian Institute of Technology, Kharagpur</span></span></summary>
+<div class="ebody"><dl><dt>Date</dt><dd>November 2024</dd><dt>Hosted by</dt><dd>NDLI Club of HNBGU and Indian Institute of Technology, Kharagpur</dd><dt>My role</dt><dd>Attended</dd></dl><p class="ph">Poster, photographs, speakers and related links can be added here.</p></div></details><details class="event" data-role="attended" data-text="national workshop: &#x27;current challenges for tribal policy in india: some issues&#x27;  research committee 07 on adivasi and tribal studies, indian sociological society one-day national workshop."><summary>
+<span class="edate"><b>11</b><i>Jul</i><small>2024</small></span>
+<span class="esum"><span class="badge b-attended">Attended</span><span class="etitle">National Workshop: &#x27;Current Challenges for Tribal Policy in India: Some Issues&#x27;</span><span class="emeta">11 July 2024 · Research Committee 07 on Adivasi and Tribal Studies, Indian Sociological Society</span></span></summary>
+<div class="ebody"><dl><dt>Date</dt><dd>11 July 2024</dd><dt>Hosted by</dt><dd>Research Committee 07 on Adivasi and Tribal Studies, Indian Sociological Society</dd><dt>My role</dt><dd>Attended</dd></dl><p>One-day national workshop.</p><p class="ph">Poster, photographs, speakers and related links can be added here.</p></div></details><details class="event" data-role="attended" data-text="one-week ganga guide training  hemvati nandan bahuguna garhwal university and state programme management group, namami gange "><summary>
+<span class="edate"><b>12</b><i>Sep</i><small>2022</small></span>
+<span class="esum"><span class="badge b-attended">Attended</span><span class="etitle">One-week Ganga Guide Training</span><span class="emeta">12–17 September 2022 · Hemvati Nandan Bahuguna Garhwal University and State Programme Management Group, Namami Gange</span></span></summary>
+<div class="ebody"><dl><dt>Date</dt><dd>12–17 September 2022</dd><dt>Hosted by</dt><dd>Hemvati Nandan Bahuguna Garhwal University and State Programme Management Group, Namami Gange</dd><dt>My role</dt><dd>Attended</dd></dl><p class="ph">Poster, photographs, speakers and related links can be added here.</p></div></details><details class="event" data-role="attended" data-text="icssr-sponsored national workshop: &#x27;tourism entrepreneurship &amp; start-up opportunities in the north eastern region&#x27;  indian council of social science research (icssr) sponsored workshop "><summary>
+<span class="edate"><b>6</b><i>Dec</i><small>2021</small></span>
+<span class="esum"><span class="badge b-attended">Attended</span><span class="etitle">ICSSR-sponsored National Workshop: &#x27;Tourism Entrepreneurship &amp; Start-up Opportunities in the North Eastern Region&#x27;</span><span class="emeta">6–10 December 2021 · Indian Council of Social Science Research (ICSSR) sponsored workshop</span></span></summary>
+<div class="ebody"><dl><dt>Date</dt><dd>6–10 December 2021</dd><dt>Hosted by</dt><dd>Indian Council of Social Science Research (ICSSR) sponsored workshop</dd><dt>My role</dt><dd>Attended</dd></dl><p class="ph">Poster, photographs, speakers and related links can be added here.</p></div></details></div></section></div>
+    <p class="empty" id="act-empty" hidden>No activities match your filters.</p>
+  </div>
+</section>
+
+<section class="band tint" id="diary">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow">Academic diary</p><h2>Weekly updates</h2><p class="lead">A running record of teaching, research, events and mentoring. The newest entry comes first and older entries move into monthly archives.</p></div>
+    <div class="diary">
+      <div class="card">
+        <h4>The first update will appear here</h4>
+        <p class="m">Each update carries:</p>
+        <ul class="fields"><li>Date</li><li>Activity title</li><li>Short description</li><li>Category</li><li>Photograph</li><li>Related link</li></ul>
+      </div>
+      <aside class="card"><h4>Monthly archive</h4><p class="m">Months with updates will be listed here.</p></aside>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="teaching">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow">Education</p><h2>Teaching and mentoring</h2><p class="lead">I teach and mentor postgraduate students of tourism and management, supporting them in research, examinations and careers in tourism, hospitality and higher education.</p></div>
+    <div class="grid g2">
+      <div><h3 class="sub">Roles and responsibilities</h3><article class="row one"><h4>Head and Assistant Professor</h4><p class="m">PG Department of Tourism &amp; Management, Naipunnya School of Management, Cherthala, Kerala (affiliated to the University of Kerala).</p></article><article class="row one"><h4>Course Creator for Central University (CSU)</h4></article></div>
+      <div><h3 class="sub">Mentoring and student support</h3><article class="row one"><h4>Faculty Mentor, Global Hospitality Fellows</h4></article><article class="row one"><h4>UGC NET/JRF preparation</h4><p class="m">Author of NTA UGC NET Tourism 2022: 1500+ PYQ Notes, a last-minute guide for the UGC NET Tourism Administration and Management paper.</p></article></div>
+    </div>
+    <h3 class="sub">Courses taught</h3>
+    <p class="ph-box">A list of courses taught will be added soon.</p>
+  </div>
+</section>
+
+<section class="band tint" id="projects">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow">Initiatives</p><h2>Projects and initiatives</h2><p class="lead">Ongoing and forthcoming research, publishing and community initiatives.</p></div>
+    <div class="grid g3"><article class="card pj"><div class="mr"><span class="tag tag-ongoing">Ongoing</span><span class='tag'>Editorial</span></div><h4>Himalayan Tourism magazine</h4><p class='m'>Role: Managing Editor</p><p>A quarterly online magazine published by the Centre for Mountain Tourism &amp; Hospitality Studies, Hemvati Nandan Bahuguna Garhwal Central University (HNBGU).</p><a class="arrow" href="https://www.himalayantourismmagazinehnbgu.com/" target="_blank" rel="noopener">Visit the magazine</a></article><article class="card pj"><div class="mr"><span class="tag tag-ongoing">Ongoing</span><span class='tag'>Initiative</span></div><h4>PUPUZO – United for Rural and Inclusive Tourism</h4><p>PUPUZO works to advance accessible tourism systems that enable full and equal participation in travel and leisure for persons with disabilities, older persons and diverse access needs, aligned with human rights, sustainability and universal design principles.</p><a class="arrow" href="http://www.pupuzo.com" target="_blank" rel="noopener">Visit pupuzo.com</a></article><article class="card pj"><div class="mr"><span class="tag tag-forthcoming">Forthcoming</span><span class='tag'>Edited book</span></div><h4>Climate Change and Human Wildlife Conflicts in Indian Himalayan Region</h4><p class='m'>Role: Editor · Forthcoming 2027</p><p>Sustainable strategies for conservation, stakeholders and local communities. An edited volume with Emerald Publishing (currently in production) on how rising temperatures, habitat destruction and extreme weather intensify human–wildlife conflicts in the ecologically fragile Indian Himalayan region, and on community-based conservation, policy and technology solutions.</p><a class="arrow" href="https://books.google.co.in/books/about/Climate_Change_and_Human_Wildlife_Confli.html" target="_blank" rel="noopener">Book details</a></article></div>
+  </div>
+</section>
+
+<section class="band" id="speaking">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow">Talks</p><h2>Speaking engagements</h2></div>
+    <h3 class="sub">Invited talks and expert sessions</h3>
+    <div class="grid g2"><article class="card talk"><div class="mr"><span class="tag">Invited expert talk (World Environment Day)</span></div><h4>Basics of Responsible Tourism</h4><p class="m">St. Claret College · Bengaluru, India</p><p>Invited as an expert speaker in celebration of World Environment Day. The session on sustainable tourism and community-driven initiatives gave students and faculty insights into promoting responsible tourism practices, balancing environmental conservation with the development of local communities.</p><div class="acts"><a class="arrow" href="https://www.youtube.com/watch?v=tJ-hryLOQCM" target="_blank" rel="noopener">Watch the session</a><a class="arrow" href="https://drive.google.com/file/d/1MeKRjl2H3gq2PuwxtVELMQpB4RYpvE59/view" target="_blank" rel="noopener">Session material</a></div></article><article class="card talk"><div class="mr"><span class="tag">Invited expert talk</span></div><h4>Career Opportunities After Plus Two</h4><p class="m">Escola International School · Kondotty, India</p><p>Invited as an expert speaker. The session engaged students on the higher education and career pathways available after secondary school, from traditional degree programmes to emerging fields, the importance of aligning passions with career goals, and vocational training, professional courses and skill-development programmes that offer a competitive edge in the job market.</p><div class="acts"><a class="arrow" href="https://drive.google.com/file/d/1sRwZzCd5elLC0lVS6YsHbhbQ2Y5yx_LG/view" target="_blank" rel="noopener">Session material</a></div></article></div>
+    <h3 class="sub">Conference presentations</h3>
+    <div><article class="row"><div><p class="m">25–26 March 2023</p><h4>[Title to be confirmed] Local governance and tourism in India</h4></div><p class="m">National Conference on &#x27;Local Governance in India@75: Issues, Challenges and Contemporary Developments&#x27; · Special Centre for the Study of Law and Governance, Jawaharlal Nehru University, New Delhi</p></article><article class="row"><div><p class="m">24–26 August 2022</p><h4>Voluntourism in Puducherry: Exploring Motivation, Experience, Satisfaction and Revisit Intentions of Tourists</h4></div><p class="m">International Conference on &#x27;Hospitality and Tourism – Revival Strategies&#x27; · IHM Pusa (Institute of Hotel Management, Catering Technology and Applied Nutrition), New Delhi, and Ministry of Tourism</p></article><article class="row"><div><p class="m">18–20 March 2021</p><h4>[Title to be confirmed] Ecotourism social entrepreneurship in Uttarakhand</h4></div><p class="m">Global Hospitality and Tourism Conference on Experiential Management and Marketing (GHTC-2020) · North-Eastern Hill University (NEHU), Shillong</p></article><article class="row"><div><p class="m">15 July 2021</p><h4>[Title to be confirmed] Systematic literature review of tourism and hospitality education during COVID-19</h4></div><p class="m">International Summit: &#x27;Shifting Gears in Tourism and Hospitality in a Time of Crisis&#x27; · Organised by UK Research and Innovation and ICBT Campus in collaboration with the University of Sunderland, UK</p></article><article class="row"><div><p class="m">January 2019</p><h4>Drug Tourism in India: Trends and Challenges</h4></div><p class="m">National Conference · Central University of Kerala</p></article><article class="row"><div><p class="m">January 2019</p><h4>Employee to Entrepreneur Transition Trends and Financing of SMEs in Indian Tourism Industry</h4></div><p class="m">International Seminar · Bharathidasan University, Tiruchirappalli</p></article><article class="row"><div><p class="m">February 2019</p><h4>[Title to be confirmed] Slum tourism in Dharavi, Mumbai</h4></div><p class="m">National Conference on Emerging Issues in Research and Development · Jai Narain Vyas University, Jodhpur, Rajasthan</p></article></div>
+  </div>
+</section>
+
+<section class="band tint" id="gallery">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow">Gallery</p><h2>Gallery</h2><p class="lead">Photographs from academic events, fieldwork and journeys will be added here.</p></div>
+    <div class="shots" aria-hidden="true"><div>Photograph</div><div>Photograph</div><div>Photograph</div><div>Photograph</div></div>
+  </div>
+</section>
+
+<section class="band dark" id="contact">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow">Contact</p><h2>Get in touch</h2><p class="lead">I welcome enquiries about research collaboration, invited talks, editorial work, student mentoring and academic programmes.</p></div>
+    <div class="contact">
+      <dl>
+        <dt>Email</dt><dd class="copyrow"><span id="em">drjunaid@naipunnyacollege.ac.in</span><button type="button" class="copy" data-copy="em">Copy</button></dd>
+        <dt>Phone</dt><dd class="copyrow"><span id="ph">+91 9498855994</span><button type="button" class="copy" data-copy="ph">Copy</button></dd>
+        <dt>Office</dt><dd>PG Department of Tourism &amp; Management<br>Naipunnya School of Management<br>Near Manorama Junction<br>Cherthala – 688524, Kerala, India</dd>
+      </dl>
+      <div><h4>Academic and professional profiles</h4><ul class="plist"><li><a href="https://orcid.org/0000-0002-8577-6320" target="_blank" rel="noopener">ORCID</a></li><li><a href="https://scholar.google.com/citations?user=DUjySa4AAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a></li><li><a href="https://www.scopus.com/authid/detail.uri?authorId=60709038800" target="_blank" rel="noopener">Scopus</a></li><li><a href="https://www.webofscience.com/wos/author/record/ADD-1067-2022" target="_blank" rel="noopener">Web of Science</a></li><li><a href="https://www.researchgate.net/profile/Junaid-Kc" target="_blank" rel="noopener">ResearchGate</a></li><li><a href="https://uttara.academia.edu/JunaidKc" target="_blank" rel="noopener">Academia.edu</a></li><li><a href="https://www.linkedin.com/in/junaidkc/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="http://www.pupuzo.com" target="_blank" rel="noopener">PUPUZO</a></li><li><a href="https://www.himalayantourismmagazinehnbgu.com/" target="_blank" rel="noopener">Himalayan Tourism magazine</a></li></ul></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><p>© 2026 Dr. Junaid K.C. All rights reserved.</p></div></footer>
+
+<script>
+(function () {
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+  // menu
+  var burger = $("#burger"), links = $("#links");
+  burger.addEventListener("click", function () {
+    var open = links.classList.toggle("open");
+    burger.setAttribute("aria-expanded", String(open));
+  });
+  $$("a", links).forEach(function (a) { a.addEventListener("click", function () { links.classList.remove("open"); burger.setAttribute("aria-expanded", "false"); }); });
+
+  // active section in menu
+  var secs = $$("main section[id]").filter(function (s) { return s.id !== "home"; });
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) {
+          $$("a", links).forEach(function (a) { a.classList.toggle("cur", a.getAttribute("href") === "#" + e.target.id); });
+        }
+      });
+    }, { rootMargin: "-40% 0px -55% 0px" });
+    secs.forEach(function (s) { io.observe(s); });
+  }
+
+  // publications
+  var items = $$("#pub-list .pub"), pq = $("#pub-q"), py = $("#pub-y"), pc = $$("#pub-cats .chip");
+  var ps = { cat: "all", q: "", y: "" };
+  function applyPubs() {
+    var n = 0;
+    items.forEach(function (li) {
+      var ok = (ps.cat === "all" || li.dataset.cat === ps.cat) && (!ps.y || li.dataset.year === ps.y) && (!ps.q || li.dataset.text.indexOf(ps.q) !== -1);
+      li.hidden = !ok; if (ok) n++;
+    });
+    $("#pub-n").textContent = n + (n === 1 ? " publication" : " publications");
+    $("#pub-empty").hidden = n !== 0;
+  }
+  pq.addEventListener("input", function () { ps.q = pq.value.trim().toLowerCase(); applyPubs(); });
+  py.addEventListener("change", function () { ps.y = py.value; applyPubs(); });
+  pc.forEach(function (c) { c.addEventListener("click", function () {
+    pc.forEach(function (x) { x.classList.remove("on"); }); c.classList.add("on"); ps.cat = c.dataset.cat; applyPubs();
+  }); });
+
+  // activities
+  var evs = $$(".event"), progs = $$("[data-prog]"), aq = $("#act-q"), ac = $$("#act-roles .chip");
+  var as = { role: "all", q: "" };
+  function applyActs() {
+    var filtering = as.role !== "all" || as.q !== "", total = 0;
+    evs.forEach(function (e) {
+      var ok = (as.role === "all" || e.dataset.role === as.role) && (!as.q || e.dataset.text.indexOf(as.q) !== -1);
+      e.hidden = !ok; if (ok) total++;
+    });
+    progs.forEach(function (p) {
+      var any = $$(".event", p).some(function (e) { return !e.hidden; });
+      p.hidden = filtering && !any;
+    });
+    $("#act-empty").hidden = !(filtering && total === 0);
+  }
+  aq.addEventListener("input", function () { as.q = aq.value.trim().toLowerCase(); applyActs(); });
+  ac.forEach(function (c) { c.addEventListener("click", function () {
+    ac.forEach(function (x) { x.classList.remove("on"); }); c.classList.add("on"); as.role = c.dataset.role; applyActs();
+  }); });
+
+  // copy buttons
+  $$(".copy").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var el = document.getElementById(b.dataset.copy), text = el.textContent;
+      function selectIt() { var r = document.createRange(); r.selectNodeContents(el); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); }
+      function done(ok) { b.textContent = ok ? "Copied" : "Selected"; setTimeout(function () { b.textContent = "Copy"; }, 1600); }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { done(true); }, function () { selectIt(); done(false); });
+      } else { selectIt(); done(false); }
+    });
+  });
+})();
+</script>
+</html>
